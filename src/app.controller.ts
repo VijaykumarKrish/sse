@@ -5,6 +5,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Controller()
 export class AppController {
+  
   private dataSubject = new BehaviorSubject<any>([]);
   // private data$ = this.dataSubject.asObservable();
 
@@ -62,8 +63,23 @@ export class AppController {
 
   @Post('data')
   postData(@Body() body){
-    console.log("body "+JSON.stringify(body),", time:",new Date());
+    console.log("body "+JSON.stringify(body),"time:",new Date());
   }
+
+  // @Get('start')
+  // start(){
+  //   const wss = new WebSocket.Server({ port: 3001 });
+
+  //   wss.on('connection', function connection(ws) {  
+  //     console.log('Client connected');
+
+  //     ws.on('message', function incoming(message) {
+  //     console.log('Received message from client:', Buffer.from(message).toString("utf-8"));
+  //   });
+  // });
+  // }
+
+ 
 
 
 }
