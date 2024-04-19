@@ -62,7 +62,7 @@ export class AppController {
 
   @Post('data')
   postData(@Body() body){
-    console.log("body "+JSON.stringify(body));
+    console.log("body "+JSON.stringify(body),", time:",new Date());
   }
 
 
