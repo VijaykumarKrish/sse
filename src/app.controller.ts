@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Res, Sse } from '@nestjs/common';
 import { AppService } from './app.service';
 import { BehaviorSubject, Observable, delay, from, fromEvent, interval, map, of, take, takeUntil, timer } from 'rxjs';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { WebSocket } from 'ws';
 
 @Controller()
 export class AppController {
@@ -66,18 +67,18 @@ export class AppController {
     console.log("body "+JSON.stringify(body),"time:",new Date());
   }
 
-  // @Get('start')
-  // start(){
-  //   const wss = new WebSocket.Server({ port: 3001 });
+  @Get('start')
+  start(){
+    const wss = new WebSocket.Server({ port: 3001 });
 
-  //   wss.on('connection', function connection(ws) {  
-  //     console.log('Client connected');
+    wss.on('connection', function connection(ws) {  
+      console.log('Client connected');
 
-  //     ws.on('message', function incoming(message) {
-  //     console.log('Received message from client:', Buffer.from(message).toString("utf-8"));
-  //   });
-  // });
-  // }
+      ws.on('message', function incoming(message) {
+      console.log('Received message from client:', Buffer.from(message).toString("utf-8"));
+    });
+  });
+  }
 
  
 
